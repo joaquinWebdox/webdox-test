@@ -2,7 +2,7 @@ const baseUrl = "http://localhost:8080/api/tickets";
 const token =
   "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MzUxMTU1MzV9.nelKlJqg_OFGVdYRZtRuMuJvCN34fFgNokS5WOUNTzs";
 
-export const all = () => {
+export const getTickets = () => {
   return fetch(baseUrl, {
     method: "GET",
     headers: {
@@ -12,7 +12,17 @@ export const all = () => {
   }).then(res => res.json());
 };
 
-export const create = ticket => {
+export const getTicket = id => {
+  return fetch(`${baseUrl}/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `${token}`
+    }
+  }).then(res => res.json());
+};
+
+export const createTicket = ticket => {
   return fetch(baseUrl, {
     method: "POST",
     headers: {
@@ -24,7 +34,7 @@ export const create = ticket => {
   }).then(res => res.json());
 };
 
-export const update = ticket => {
+export const updateTicket = ticket => {
   return fetch(`${baseUrl}/${ticket.id}`, {
     method: "PUT",
     headers: {
@@ -36,7 +46,7 @@ export const update = ticket => {
   }).then(res => res.json());
 };
 
-export const destroy = id => {
+export const destroyTicket = id => {
   return fetch(`${baseUrl}/${id}`, {
     method: "DELETE",
     headers: {

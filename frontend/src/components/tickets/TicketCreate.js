@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { TicketForm } from "./TicketForm";
-import { create } from "./TicketService";
+import { createTicket } from "./TicketService";
 
 class TicketCreate extends Component {
   state = {
     title: "",
-    description: ""
+    description: "",
+    user_assigned: undefined,
+    user_owned: undefined,
+    status: ""
   };
 
   handleInputChange = event => {
@@ -23,20 +26,26 @@ class TicketCreate extends Component {
 
     const newTicket = {
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
+      user_assigned: Number(this.state.user_assigned),
+      user_owned: Number(this.state.user_owned),
+      status: this.state.status
     };
 
-    create(newTicket).then(() => console.log("Ticket created!"));
+    createTicket(newTicket).then(() => console.log("Ticket created!"));
   };
 
   render() {
     const { newTicket } = this.state;
     return (
-      <TicketForm
-        handleSubmit={this.handleSubmit}
-        handleInputChange={this.handleInputChange}
-        {...newTicket}
-      />
+      <div>
+        <h4>New</h4>
+        <TicketForm
+          handleSubmit={this.handleSubmit}
+          handleInputChange={this.handleInputChange}
+          {...newTicket}
+        />
+      </div>
     );
   }
 }

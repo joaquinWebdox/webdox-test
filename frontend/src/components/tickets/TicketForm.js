@@ -12,7 +12,25 @@ export const TicketForm = props => (
       id="content"
       name="description"
       onChange={props.handleInputChange}
-      value={props.content}
+      value={props.description}
+    />
+    <input
+      type="number"
+      name="user_assigned"
+      onChange={props.handleInputChange}
+      value={props.user_assigned}
+    />
+    <input
+      type="number"
+      name="user_owned"
+      onChange={props.handleInputChange}
+      value={props.user_owned}
+    />
+    <input
+      type="text"
+      name="status"
+      onChange={props.handleInputChange}
+      value={props.status}
     />
     <button onClick={props.handleSubmit}>Save</button>
   </form>
