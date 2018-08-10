@@ -1,12 +1,13 @@
 class Api::TicketsController < ApplicationController
-  before_action    :set_ticket,    only: [:show, :update, :destroy, :close]
+  before_action    :set_ticket,    only: [:update, :destroy, :close]
 
   def index
-    @tickets = Ticket.includes(:comments, :user_assigned, :user_owned)
+    @tickets = Ticket.includes(:user_assigned, :user_owned)
     render json: @tickets
   end
 
   def show
+    @ticket = Ticket.includes(:comments, :user_assigned, :user_owned).where(id: params[:id]).first
     render json: @ticket
   end
 

@@ -9,7 +9,6 @@ export const TicketForm = props => (
       value={props.title}
     />
     <textarea
-      id="content"
       name="description"
       onChange={props.handleInputChange}
       value={props.description}

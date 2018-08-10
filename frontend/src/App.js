@@ -9,6 +9,7 @@ import {
 import Ticket from "./components/tickets/Ticket";
 import TicketCreate from "./components/tickets/TicketCreate";
 import TicketEdit from "./components/tickets/TicketEdit";
+import TicketShow from "./components/tickets/TicketShow";
 import { destroyTicket } from "./components/tickets/TicketService";
 
 class App extends Component {
@@ -30,6 +31,11 @@ class App extends Component {
 
                   <Route exact path="/tickets" component={Ticket} />
                   <Route exact path="/tickets/new" component={TicketCreate} />
+                  <Route
+                    exact
+                    path="/tickets/:id/show"
+                    component={TicketShow}
+                  />
                   <Route
                     exact
                     path="/tickets/:id/edit"

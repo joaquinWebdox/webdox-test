@@ -9,6 +9,7 @@ export const TicketItem = props => {
       <td>{props.user_owned.name}</td>
       <td>{props.status}</td>
       <td>
+        <Link to={`/tickets/${props.id}/show`}>show</Link>
         <Link to={`/tickets/${props.id}/edit`}>edit</Link>
         <Link to={`/tickets/${props.id}/destroy`}>destroy</Link>
       </td>
