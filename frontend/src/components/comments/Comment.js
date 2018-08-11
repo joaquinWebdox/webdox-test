@@ -25,9 +25,9 @@ class Comment extends Component {
     evt.preventDefault();
 
     const newComment = {
-      user_id: this.state.user_id,
-      ticket_id: this.state.ticket_id,
-      content: this.state.content
+      user_id: this.state.comment.user_id,
+      ticket_id: this.state.comment.ticket_id,
+      content: this.state.comment.content
     };
 
     createComment(newComment).then(() => console.log("Comment created!"));

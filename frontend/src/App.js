@@ -6,11 +6,15 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import Ticket from "./components/tickets/Ticket";
-import TicketCreate from "./components/tickets/TicketCreate";
-import TicketEdit from "./components/tickets/TicketEdit";
-import TicketShow from "./components/tickets/TicketShow";
+import {
+  Ticket,
+  TicketCreate,
+  TicketEdit,
+  TicketShow
+} from "./components/tickets";
 import { destroyTicket } from "./components/tickets/TicketService";
+import { User, UserCreate, UserEdit } from "./components/users";
+import { destroyUser } from "./components/users/UserService";
 
 class App extends Component {
   render() {
@@ -25,28 +29,34 @@ class App extends Component {
                     <li>
                       <Link to="/tickets">Tickets</Link>
                     </li>
+                    <li>
+                      <Link to="/users">Users</Link>
+                    </li>
                   </ul>
 
                   <hr />
 
                   <Route exact path="/tickets" component={Ticket} />
-                  <Route exact path="/tickets/new" component={TicketCreate} />
+                  <Route path="/tickets/new" component={TicketCreate} />
+                  <Route path="/tickets/:id/show" component={TicketShow} />
+                  <Route path="/tickets/:id/edit" component={TicketEdit} />
                   <Route
-                    exact
-                    path="/tickets/:id/show"
-                    component={TicketShow}
-                  />
-                  <Route
-                    exact
-                    path="/tickets/:id/edit"
-                    component={TicketEdit}
-                  />
-                  <Route
-                    exact
                     path="/tickets/:id/destroy"
                     render={({ match }) => {
                       destroyTicket(match.params.id).then(() => (
                         <Redirect to="/tickets" />
+                      ));
+                    }}
+                  />
+
+                  <Route exact path="/users" component={User} />
+                  <Route path="/users/new" component={UserCreate} />
+                  <Route path="/users/:id/edit" component={UserEdit} />
+                  <Route
+                    path="/users/:id/destroy"
+                    render={({ match }) => {
+                      destroyUser(match.params.id).then(() => (
+                        <Redirect to="/users" />
                       ));
                     }}
                   />

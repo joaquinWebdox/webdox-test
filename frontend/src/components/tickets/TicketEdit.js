@@ -50,7 +50,7 @@ class TicketEdit extends Component {
 
     return (
       <div>
-        <h4>Edit</h4>
+        <h4>Edit Ticket</h4>
         <TicketForm
           handleSubmit={this.handleSubmit}
           handleInputChange={this.handleInputChange}

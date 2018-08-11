@@ -16,7 +16,7 @@ class Ticket extends Component {
     const tickets = this.state.tickets;
     return (
       <div>
-        <Link to="/tickets/new">New</Link>
+        <Link to="/tickets/new">New Ticket</Link>
         <TicketList tickets={tickets} />
       </div>
     );

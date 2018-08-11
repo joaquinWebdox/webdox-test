@@ -39,7 +39,7 @@ class TicketCreate extends Component {
     const { newTicket } = this.state;
     return (
       <div>
-        <h4>New</h4>
+        <h4>New Ticket</h4>
         <TicketForm
           handleSubmit={this.handleSubmit}
           handleInputChange={this.handleInputChange}
