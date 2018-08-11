@@ -1,5 +1,15 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Collapse,
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
 import {
   BrowserRouter as Router,
   Route,
@@ -25,16 +35,19 @@ class App extends Component {
             <Col md="12">
               <Router>
                 <div>
-                  <ul>
-                    <li>
-                      <Link to="/tickets">Tickets</Link>
-                    </li>
-                    <li>
-                      <Link to="/users">Users</Link>
-                    </li>
-                  </ul>
-
-                  <hr />
+                  <Navbar color="light" light expand="md">
+                    <NavbarBrand href="/">Webdox test</NavbarBrand>
+                    <Collapse isOpen={true} navbar>
+                      <Nav className="ml-auto" navbar>
+                        <NavItem>
+                          <NavLink href="/tickets">Tickets</NavLink>
+                        </NavItem>
+                        <NavItem>
+                          <NavLink href="/users">Users</NavLink>
+                        </NavItem>
+                      </Nav>
+                    </Collapse>
+                  </Navbar>
 
                   <Route exact path="/tickets" component={Ticket} />
                   <Route path="/tickets/new" component={TicketCreate} />
