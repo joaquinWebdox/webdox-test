@@ -1,4 +1,4 @@
-class Api::CommentsController < ApplicationController
+class Api::Admin::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)

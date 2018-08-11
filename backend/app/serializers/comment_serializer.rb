@@ -1,3 +1,3 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :user, :ticket, :content
+  attributes :user, :ticket_id, :content
 end

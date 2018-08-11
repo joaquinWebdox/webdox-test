@@ -28,13 +28,13 @@ ActiveRecord::Schema.define(version: 20180810100752) do
   create_table "tickets", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "user_assigned"
-    t.integer  "user_owned"
-    t.string   "status",        default: "open"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.index ["user_assigned"], name: "index_tickets_on_user_assigned", using: :btree
-    t.index ["user_owned"], name: "index_tickets_on_user_owned", using: :btree
+    t.integer  "user_assigned_id"
+    t.integer  "user_owned_id"
+    t.string   "status",           default: "open"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["user_assigned_id"], name: "index_tickets_on_user_assigned_id", using: :btree
+    t.index ["user_owned_id"], name: "index_tickets_on_user_owned_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,4 +1,4 @@
-class Api::UsersController < ApplicationController
+class Api::Admin::UsersController < ApplicationController
   before_action    :set_user,    only: [:show, :update, :destroy]
 
   def index
@@ -13,11 +13,11 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
       
-      if @user.save
-        render :create
-      else
-        head(:unprocessable_entity)
-      end
+    if @user.save
+      render json: @user
+    else
+      head(:unprocessable_entity)
+    end
   end
 
   def update
@@ -29,7 +29,11 @@ class Api::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    if @user.destroy
+      head(:no_content)
+    else
+      head(:unprocessable_entity)  
+    end
   end
 
   private

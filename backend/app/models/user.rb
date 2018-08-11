@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many    :assigned_tickets,    class_name: "Ticket"
-  has_many    :owned_tickets,       class_name: "Ticket"
+  has_many    :tickets_assigned,    class_name: "Ticket",    foreign_key: "user_assigned_id"
+  has_many    :tickets_owned,       class_name: "Ticket",    foreign_key: "user_owned_id"
   has_many    :comments
   
 end
