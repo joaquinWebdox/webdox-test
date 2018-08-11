@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     delete 'logout' => 'sessions#destroy'
 
     resources :users, except: [:new, :edit]
-    resources :tickets, except: [:new, :edit]
+    resources :tickets, except: [:new, :edit] do
+      member { put :close }
+    end
     resources :comments, only: [:create]
   end
 end

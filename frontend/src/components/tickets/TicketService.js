@@ -46,6 +46,17 @@ export const updateTicket = ticket => {
   }).then(res => res.json());
 };
 
+export const closeTicket = id => {
+  return fetch(`${baseUrl}/${id}/close`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `${token}`
+    }
+  }).then(res => res.json());
+};
+
 export const destroyTicket = id => {
   return fetch(`${baseUrl}/${id}`, {
     method: "DELETE",

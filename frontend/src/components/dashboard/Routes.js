@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Ticket, TicketCreate, TicketEdit, TicketShow } from "../tickets";
-import { destroyTicket } from "../tickets/TicketService";
+import { closeTicket, destroyTicket } from "../tickets/TicketService";
 import { User, UserCreate, UserEdit } from "../users";
 import { destroyUser } from "../users/UserService";
 
@@ -19,6 +19,16 @@ export const Routes = () => {
             destroyTicket(match.params.id).then(() => (
               <Redirect to="/tickets" />
             ));
+          }}
+        />
+
+        <Route
+          exact
+          path="/tickets/:id/close"
+          render={({ match }) => {
+            return closeTicket(match.params.id).then(() => {
+              return <Redirect to="/tickets" />;
+            });
           }}
         />
 
