@@ -21,7 +21,11 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
+    if @user.update(user_params)
+      render json: @user
+    else
+      head(:unprocessable_entity)  
+    end
   end
 
   def destroy
