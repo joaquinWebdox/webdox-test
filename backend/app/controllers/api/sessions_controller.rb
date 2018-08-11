@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
 
     if @user.valid_password?(params[:password])
       jwt = JWT.encode(
-        {user_id: @user.id, exp: (Time.now + 2.weeks).to_i},
+        {user_id: @user.id, exp: (Time.now + 2.hours).to_i},
         Rails.application.secrets.secret_key_base,
         'HS256'
       )
@@ -17,7 +17,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-    # delete current user
-    # remove jwt
+    # clear current user
+    # expire jwt
   end
 end
