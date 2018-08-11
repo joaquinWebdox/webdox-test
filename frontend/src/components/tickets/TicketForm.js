@@ -6,7 +6,7 @@ export const TicketForm = props => (
     <FormGroup row>
       <Col md="12">
         <FormGroup>
-          <Label for="name">title</Label>
+          <Label for="title">title</Label>
           <Input
             type="text"
             name="title"

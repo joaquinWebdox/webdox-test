@@ -40,7 +40,7 @@ export const UserForm = props => (
         <FormGroup>
           <Label for="password">Password</Label>
           <Input
-            type="text"
+            type="password"
             name="password"
             onChange={props.handleInputChange}
             value={props.password}
@@ -50,7 +50,7 @@ export const UserForm = props => (
         <FormGroup>
           <Label for="password_confirmation">Password confirmation</Label>
           <Input
-            type="text"
+            type="password"
             name="password_confirmation"
             onChange={props.handleInputChange}
             value={props.password_confirmation}

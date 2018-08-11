@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { UserForm } from "./UserForm";
 import { createUser } from "./UserService";
+import { Redirect } from "react-router-dom";
 
 class UserCreate extends Component {
   state = {
-    id: undefined,
-    name: "",
-    email: "",
-    role: "",
-    password: "",
-    password_confirmation: ""
+    user: {},
+    created: false
   };
 
   handleInputChange = event => {
@@ -17,34 +14,32 @@ class UserCreate extends Component {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
+    Object.assign(this.state.user, { [name]: value });
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
 
     const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      role: this.state.role,
-      password: this.state.password,
-      password_confirmation: this.state.password_confirmation
+      name: this.state.user.name,
+      email: this.state.user.email,
+      role: this.state.user.role,
+      password: this.state.user.password,
+      password_confirmation: this.state.user.password_confirmation
     };
 
-    createUser(newUser).then(() => console.log("User created!"));
+    createUser(newUser).then(() => this.setState({ created: true }));
   };
 
   render() {
-    const { newUser } = this.state;
+    if (this.state.created === true) return <Redirect to="/users" />;
+
     return (
       <div>
         <h4>New User</h4>
         <UserForm
           handleSubmit={this.handleSubmit}
           handleInputChange={this.handleInputChange}
-          {...newUser}
         />
       </div>
     );

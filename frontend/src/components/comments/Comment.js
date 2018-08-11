@@ -11,14 +11,10 @@ class Comment extends Component {
 
   handleInputChange = event => {
     const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.value;
     const name = target.name;
 
-    this.setState({
-      comment: {
-        [name]: value
-      }
-    });
+    Object.assign(this.state.comment, { [name]: value });
   };
 
   handleSubmit = evt => {

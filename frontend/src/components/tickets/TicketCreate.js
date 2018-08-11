@@ -1,49 +1,45 @@
 import React, { Component } from "react";
 import { TicketForm } from "./TicketForm";
 import { createTicket } from "./TicketService";
+import { Redirect } from "react-router-dom";
 
 class TicketCreate extends Component {
   state = {
-    title: "",
-    description: "",
-    user_assigned: undefined,
-    user_owned: undefined,
-    status: ""
+    ticket: {},
+    created: false
   };
 
   handleInputChange = event => {
     const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
+    Object.assign(this.state.ticket, { [name]: value });
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
 
     const newTicket = {
-      title: this.state.title,
-      description: this.state.description,
-      user_assigned: Number(this.state.user_assigned),
-      user_owned: Number(this.state.user_owned),
-      status: this.state.status
+      title: this.state.ticket.title,
+      description: this.state.ticket.description,
+      user_assigned: Number(this.state.ticket.user_assigned),
+      user_owned: Number(this.state.ticket.user_owned),
+      status: this.state.ticket.status
     };
 
-    createTicket(newTicket).then(() => console.log("Ticket created!"));
+    createTicket(newTicket).then(() => this.setState({ created: true }));
   };
 
   render() {
-    const { newTicket } = this.state;
+    if (this.state.created === true) return <Redirect to="/tickets" />;
+
     return (
       <div>
         <h4>New Ticket</h4>
         <TicketForm
           handleSubmit={this.handleSubmit}
           handleInputChange={this.handleInputChange}
-          {...newTicket}
         />
       </div>
     );

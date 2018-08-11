@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { TicketForm } from "./TicketForm";
 import { getTicket, updateTicket } from "./TicketService";
+import { Redirect } from "react-router-dom";
 
 class TicketEdit extends Component {
   state = {
-    id: undefined,
-    title: "",
-    description: "",
-    user_assigned: undefined,
-    user_owned: undefined,
-    status: ""
+    ticket: {},
+    updated: false
   };
 
   componentWillMount() {
@@ -17,36 +14,47 @@ class TicketEdit extends Component {
 
     getTicket(id).then(ticket => {
       this.setState({
-        id: ticket.id,
-        title: ticket.title,
-        description: ticket.description,
-        user_assigned: ticket.user_assigned.id,
-        user_owned: ticket.user_owned.id,
-        status: ticket.status
+        ticket: {
+          id: ticket.id,
+          title: ticket.title,
+          description: ticket.description,
+          user_assigned: ticket.user_assigned.id,
+          user_owned: ticket.user_owned.id,
+          status: ticket.status
+        }
       });
     });
   }
 
   handleInputChange = event => {
     const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.value;
     const name = target.name;
 
+    const ticketState = this.state.ticket;
+
+    Object.keys(ticketState).forEach(function(key) {
+      if (key === name) {
+        ticketState[key] = value;
+      }
+    });
+
     this.setState({
-      [name]: value
+      ticket: ticketState
     });
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
 
-    const ticket = this.state;
+    const ticket = this.state.ticket;
 
-    updateTicket(ticket).then(() => console.log("Ticket updated!"));
+    updateTicket(ticket).then(() => this.setState({ updated: true }));
   };
 
   render() {
-    const ticket = this.state;
+    const ticket = this.state.ticket;
+    if (this.state.updated === true) return <Redirect to="/tickets" />;
 
     return (
       <div>

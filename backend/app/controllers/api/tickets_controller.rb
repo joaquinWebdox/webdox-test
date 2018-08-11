@@ -22,7 +22,9 @@ class Api::TicketsController < ApplicationController
   end
 
   def update
-    if @ticket.update(ticket_params)
+    build_ticket
+
+    if @ticket.save
       render json: @ticket
     else
       head(:unprocessable_entity)  
@@ -56,7 +58,7 @@ class Api::TicketsController < ApplicationController
     end
 
     def build_ticket
-      @ticket = Ticket.new
+      @ticket ||= Ticket.new
 
       @ticket.title         = ticket_params[:title]
       @ticket.description   = ticket_params[:description]
