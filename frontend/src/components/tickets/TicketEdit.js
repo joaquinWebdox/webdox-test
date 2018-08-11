@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import { TicketForm } from "./TicketForm";
 import { getTicket, updateTicket } from "./TicketService";
+import { getUsers } from "../users/UserService";
 import { Redirect } from "react-router-dom";
 
 class TicketEdit extends Component {
   state = {
     ticket: {},
+    users: [],
     updated: false
   };
 
   componentWillMount() {
     const id = this.props.match.params.id;
+
+    getUsers().then(users => this.setState({ users }));
 
     getTicket(id).then(ticket => {
       this.setState({
@@ -54,6 +58,7 @@ class TicketEdit extends Component {
 
   render() {
     const ticket = this.state.ticket;
+    const users = this.state.users;
     if (this.state.updated === true) return <Redirect to="/tickets" />;
 
     return (
@@ -63,6 +68,7 @@ class TicketEdit extends Component {
           handleSubmit={this.handleSubmit}
           handleInputChange={this.handleInputChange}
           {...ticket}
+          users={users}
         />
       </div>
     );

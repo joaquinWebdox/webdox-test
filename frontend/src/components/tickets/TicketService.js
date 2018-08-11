@@ -1,6 +1,6 @@
-const baseUrl = "http://localhost:8080/api/tickets";
+const baseUrl = "http://localhost:8080/api/admin/tickets";
 const token =
-  "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MzUxMTU1MzV9.nelKlJqg_OFGVdYRZtRuMuJvCN34fFgNokS5WOUNTzs";
+  "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE1MzQwMTc5MDN9.RLFaUFAJAP8Bi-CE7DvUQhOdgiO5PaiGtAqX1RdVMFQ";
 
 export const getTickets = () => {
   return fetch(baseUrl, {

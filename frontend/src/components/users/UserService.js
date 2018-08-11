@@ -1,6 +1,6 @@
-const baseUrl = "http://localhost:8080/api/users";
+const baseUrl = "http://localhost:8080/api/admin/users";
 const token =
-  "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MzUxNTYzMjh9.W0Zu_ptt71nuQOSyhJ1qT2f5lXHlSlTM7qjwgmmCaGE";
+  "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE1MzQwMTc5MDN9.RLFaUFAJAP8Bi-CE7DvUQhOdgiO5PaiGtAqX1RdVMFQ";
 
 export const getUsers = () => {
   return fetch(baseUrl, {

@@ -68,10 +68,10 @@ export const TicketForm = props => (
 
       <Col md="4">
         <FormGroup>
-          <Label for="role">Status</Label>
+          <Label for="status">Status</Label>
           <Input
             type="select"
-            name="role"
+            name="status"
             onChange={props.handleInputChange}
             value={props.status}
           >
