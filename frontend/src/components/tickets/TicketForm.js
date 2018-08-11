@@ -30,11 +30,19 @@ export const TicketForm = props => (
         <FormGroup>
           <Label for="user_assigned">User assigned</Label>
           <Input
-            type="text"
+            type="select"
             name="user_assigned"
             onChange={props.handleInputChange}
             value={props.user_assigned}
-          />
+          >
+            {props.users.map((user, index) => {
+              return (
+                <option key={index} value={user.id}>
+                  {user.name}
+                </option>
+              );
+            })}
+          </Input>
         </FormGroup>
       </Col>
 
@@ -42,23 +50,35 @@ export const TicketForm = props => (
         <FormGroup>
           <Label for="user_owned">User Owned</Label>
           <Input
-            type="text"
+            type="select"
             name="user_owned"
             onChange={props.handleInputChange}
             value={props.user_owned}
-          />
+          >
+            {props.users.map((user, index) => {
+              return (
+                <option key={index} value={user.id}>
+                  {user.name}
+                </option>
+              );
+            })}
+          </Input>
         </FormGroup>
       </Col>
 
       <Col md="4">
         <FormGroup>
-          <Label for="status">Status</Label>
+          <Label for="role">Status</Label>
           <Input
-            type="text"
-            name="status"
+            type="select"
+            name="role"
             onChange={props.handleInputChange}
             value={props.status}
-          />
+          >
+            <option value="open">Open</option>
+            <option value="in_process">In process</option>
+            <option value="closed">Closed</option>
+          </Input>
         </FormGroup>
       </Col>
     </FormGroup>

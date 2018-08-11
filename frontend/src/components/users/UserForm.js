@@ -28,11 +28,15 @@ export const UserForm = props => (
         <FormGroup>
           <Label for="role">Role</Label>
           <Input
-            type="text"
+            type="select"
             name="role"
             onChange={props.handleInputChange}
             value={props.role}
-          />
+          >
+            <option value="administrator">Administrator</option>
+            <option value="moderator">Moderator</option>
+            <option value="author">Author</option>
+          </Input>
         </FormGroup>
       </Col>
 

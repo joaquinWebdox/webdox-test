@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { TicketForm } from "./TicketForm";
 import { createTicket } from "./TicketService";
+import { getUsers } from "../users/UserService";
 import { Redirect } from "react-router-dom";
 
 class TicketCreate extends Component {
   state = {
     ticket: {},
+    users: [],
     created: false
   };
+
+  componentWillMount() {
+    getUsers().then(users => this.setState({ users }));
+  }
 
   handleInputChange = event => {
     const target = event.target;
@@ -33,13 +39,14 @@ class TicketCreate extends Component {
 
   render() {
     if (this.state.created === true) return <Redirect to="/tickets" />;
-
+    const users = this.state.users;
     return (
       <div>
         <h4>New Ticket</h4>
         <TicketForm
           handleSubmit={this.handleSubmit}
           handleInputChange={this.handleInputChange}
+          users={users}
         />
       </div>
     );
