@@ -20,3 +20,7 @@ RUN:
     on frontend folder
     npm install
     npm start
+
+
+
+[wakatime](https://wakatime.com/@93358813-27bb-48e5-97e5-7759a15b739d/projects/ztbxjukcdq?start=2018-08-06&end=2018-08-12)
